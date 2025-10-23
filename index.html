@@ -257,7 +257,7 @@
                     <path d="M11.33,6.33a5,5,0,1,1-5,5,5,5,0,0,1,5-5m1.34,1.34a5,5,0,1,0,5,5,5,5,0,0,0-5-5" />
                 </svg>
                 <h4 class="font-brand text-2xl mb-2">Thank You!</h4>
-                <p class="text-ivory-cream/70">Your order is confirmed. A piece of eternity is on its way.</p>
+                <p class="text-ivory-cream/70">Your order is confirmed. A piece of eternity is on its way. **Please ensure you have completed the UPI payment before closing this window.**</p>
             </div>
         </div>
     </div>
@@ -411,39 +411,7 @@
         updateCart();
     }
     
-    // --- UPI PAYMENT FUNCTIONS (NEW) ---
-    function generateUpiIntentLink(amount) {
-        // ***************************************************************
-        // *** ⚠️ CRITICAL: REPLACE 'ETERNALCHOCO@BANK' with your actual VPA ***
-        // ***************************************************************
-        const vpa = 'ETERNALCHOCO@BANK'; // <--- THIS IS YOUR MERCHANT VPA
-        const name = 'Eternal Chocolate'; // <--- THIS IS YOUR MERCHANT NAME
-        
-        const transactionRef = 'ORDER_' + Date.now(); // Simple unique ID
-        const encodedName = encodeURIComponent(name);
-        const encodedNote = encodeURIComponent('Payment for Eternal Chocolate Order');
-        
-        // UPI Deep Link Format: upi://pay?pa={VPA}&pn={NAME}&am={AMOUNT}&tr={REF ID}&cu={CURRENCY}&tn={NOTE}
-        const upiLink = `upi://pay?pa=${vpa}&pn=${encodedName}&am=${amount.toFixed(2)}&tr=${transactionRef}&cu=INR&tn=${encodedNote}`;
-        
-        return upiLink;
-    }
-
-    function handleUpiIntent(amount) {
-        const upiLink = generateUpiIntentLink(amount);
-        
-        // This command launches the UPI app on a mobile device
-        window.location.href = upiLink;
-
-        // Simulation for success after redirecting (in a real app, you poll the server)
-        document.getElementById('checkout-content').innerHTML = ''; 
-        document.getElementById('order-success').classList.remove('hidden');
-        cart = []; // Empty the cart
-        updateCart();
-        setTimeout(closeCheckout, 4000); // Close modal after a delay
-    }
-
-    // --- CHECKOUT LOGIC (MODIFIED) ---
+    // --- CHECKOUT LOGIC (MODIFIED FOR QR CODE) ---
     document.getElementById('checkout-btn').addEventListener('click', () => {
         toggleCart();
         checkoutModal.classList.remove('hidden');
@@ -453,14 +421,13 @@
     function closeCheckout() {
         checkoutModal.classList.add('hidden');
         document.getElementById('order-success').classList.add('hidden');
-        // Reload/clear the checkout content on close
         document.getElementById('checkout-content').innerHTML = '';
     }
 
     function renderCheckoutForm() {
         const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
         
-        // MODIFIED: Payment options updated
+        // MODIFIED: Only includes shipping form and QR code for payment
         document.getElementById('checkout-content').innerHTML = `
             <form id="payment-form" class="space-y-4">
                 <h4 class="text-lg font-semibold border-b border-ivory-cream/10 pb-2 mb-4">Shipping Information</h4>
@@ -470,34 +437,29 @@
                     <input type="text" required placeholder="City" class="w-full bg-ivory-cream/5 p-2 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">
                     <input type="text" required placeholder="Pincode" class="w-full bg-ivory-cream/5 p-2 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">
                 </div>
-                 <h4 class="text-lg font-semibold border-b border-ivory-cream/10 pb-2 mb-4 pt-4">Payment Method</h4>
-                 <div class="space-y-2 text-ivory-cream/80">
-                    <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="upi-intent" checked class="mr-3 accent-gold-foil"> **Pay via UPI App (GPay, PhonePe etc.)**</label>
-                    
-                    <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="card" class="mr-3 accent-gold-foil"> Credit / Debit Card</label>
-                    <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="cod" class="mr-3 accent-gold-foil"> Cash on Delivery (COD)</label>
+                
+                 <h4 class="text-lg font-semibold border-b border-ivory-cream/10 pb-2 mb-4 pt-4">Complete Payment via UPI Scan</h4>
+                 <div class="text-center p-4 bg-ivory-cream/5 rounded-lg">
+                    <p class="text-xl pt-2 pb-4">Scan to Pay: <span class="text-gold-foil font-bold">₹${subtotal.toFixed(2)}</span></p>
+                    <img src="1001024868.png" alt="UPI QR Code for Eternal Chocolate" class="w-48 h-48 mx-auto rounded-lg mb-4 border-2 border-gold-foil p-1">
+                    <p class="text-sm text-ivory-cream/60">After scanning and paying, click 'Place Order'.</p>
                  </div>
+                 
                  <div class="text-right text-xl pt-4">Total: <span class="text-gold-foil font-bold">₹${subtotal.toFixed(2)}</span></div>
-                 <button type="submit" class="btn-gold w-full py-3 mt-4 rounded-md">Place Order</button>
+                 <button type="submit" class="btn-gold w-full py-3 mt-4 rounded-md">I Have Paid - Place Order</button>
             </form>
         `;
 
+        // Submission is now purely a confirmation of payment, not triggering a payment intent
         document.getElementById('payment-form').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
-            
-            if (selectedPayment === 'upi-intent') {
-                // *** CALLS YOUR NEW UPI INTENT HANDLER, WHICH USES YOUR VPA ***
-                handleUpiIntent(subtotal);
-            } else {
-                // Existing logic for other payment methods (simulated success)
-                document.getElementById('checkout-content').innerHTML = '';
-                document.getElementById('order-success').classList.remove('hidden');
-                cart = []; // Empty the cart
-                updateCart();
-                setTimeout(closeCheckout, 4000); 
-            }
+            // Simulates success based on the user clicking the button
+            document.getElementById('checkout-content').innerHTML = '';
+            document.getElementById('order-success').classList.remove('hidden');
+            cart = []; // Empty the cart
+            updateCart();
+            setTimeout(closeCheckout, 6000); // Give user time to read success message
         });
     }
     
@@ -518,4 +480,3 @@
 
 </body>
 </html>
-
