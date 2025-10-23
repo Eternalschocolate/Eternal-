@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght=300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* Base Styles & Custom Properties */
         :root {
@@ -112,7 +112,6 @@
 </head>
 <body class="celestial-bg">
 
-    <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-midnight-blue/80 backdrop-blur-sm border-b border-ivory-cream/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" onclick="navigateTo('home')" class="font-brand text-3xl gold-foil-text tracking-wider">Eternal</a>
@@ -133,9 +132,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="pt-24">
-        <!-- Home Page -->
         <div id="home" class="page-content">
             <section class="min-h-screen flex items-center justify-center text-center px-6 fade-in">
                 <div class="max-w-4xl">
@@ -149,7 +146,6 @@
             </section>
         </div>
 
-        <!-- Shop Page -->
         <div id="shop" class="page-content hidden">
             <section class="container mx-auto px-6 py-16 fade-in">
                 <h2 class="font-brand text-5xl text-center mb-4">Our Collection</h2>
@@ -161,12 +157,10 @@
                     <button class="filter-btn" data-filter="white">White</button>
                 </div>
                 <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                    <!-- Product cards will be injected here by JS -->
-                </div>
+                    </div>
             </section>
         </div>
 
-        <!-- About Page -->
         <div id="about" class="page-content hidden">
             <section class="container mx-auto px-6 py-16 fade-in">
                 <div class="max-w-4xl mx-auto text-center">
@@ -182,7 +176,6 @@
             </section>
         </div>
 
-        <!-- Contact Page -->
         <div id="contact" class="page-content hidden">
             <section class="container mx-auto px-6 py-16 fade-in">
                 <div class="max-w-2xl mx-auto text-center">
@@ -190,7 +183,7 @@
                     <p class="text-ivory-cream/70 mb-12">We'd love to hear from you. For inquiries, collaborations, or just to share a timeless moment.</p>
                     <form id="contact-form" class="space-y-6">
                         <input type="text" placeholder="Your Name" class="w-full bg-ivory-cream/5 border border-ivory-cream/20 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-gold-foil transition">
-                        <input type="email" placeholder="Your Email" class="w-full bg-ivory-cream/5 border border-ivory-cream/20 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-gold-foil transition">
+                        <input type="email" placeholder="Your Email" class="w-full bg-ivory-cream/5 p-2 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-2 focus:ring-gold-foil">
                         <textarea placeholder="Your Message" rows="5" class="w-full bg-ivory-cream/5 border border-ivory-cream/20 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-gold-foil transition"></textarea>
                         <button type="submit" class="btn-gold w-full py-3 rounded-md text-lg">Send Message</button>
                     </form>
@@ -206,7 +199,6 @@
         </div>
     </main>
     
-    <!-- Instagram Feed Section -->
     <section class="py-20 border-t border-ivory-cream/10">
         <h3 class="font-brand text-3xl text-center mb-10">Follow Our Journey @eternalchocolatebars</h3>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
@@ -219,7 +211,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-ivory-cream/5 py-12">
         <div class="container mx-auto px-6 text-center text-ivory-cream/60">
             <div class="flex justify-center space-x-8 mb-6">
@@ -235,7 +226,6 @@
         </div>
     </footer>
     
-    <!-- Cart Sidebar -->
     <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-midnight-blue shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out z-50 flex flex-col">
         <div class="p-6 flex justify-between items-center border-b border-ivory-cream/10">
             <h3 class="font-brand text-2xl">Your Cart</h3>
@@ -244,7 +234,6 @@
             </button>
         </div>
         <div id="cart-items" class="flex-grow p-6 overflow-y-auto">
-            <!-- Cart items will be injected here -->
             <p id="empty-cart-message" class="text-center text-ivory-cream/50 mt-10">Your cart is empty.</p>
         </div>
         <div class="p-6 border-t border-ivory-cream/10">
@@ -257,14 +246,12 @@
     </div>
     <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="toggleCart()"></div>
 
-    <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-midnight-blue rounded-lg shadow-xl w-full max-w-lg p-8 relative celestial-bg">
             <button onclick="closeCheckout()" class="absolute top-4 right-4 text-ivory-cream/50 hover:text-gold-foil">&times;</button>
             <h3 class="font-brand text-3xl text-center mb-6">Checkout</h3>
             <div id="checkout-content">
-                <!-- Shipping Info & Payment -->
-            </div>
+                </div>
             <div id="order-success" class="hidden text-center py-10">
                 <svg class="w-16 h-16 text-gold-foil mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M11.33,6.33a5,5,0,1,1-5,5,5,5,0,0,1,5-5m1.34,1.34a5,5,0,1,0,5,5,5,5,0,0,0-5-5" />
@@ -423,8 +410,42 @@
         cart = cart.filter(item => item.id !== productId);
         updateCart();
     }
+    
+    // --- UPI PAYMENT FUNCTIONS (NEW) ---
+    function generateUpiIntentLink(amount) {
+        // NOTE: In a real app, the VPA ('merchant@upi') and Transaction ID ('TR_12345') 
+        // would be dynamically generated by a Payment Gateway API for every order.
+        const vpa = 'merchant@upi'; // Replace with your actual merchant VPA
+        const name = 'EternalChocoBars';
+        const transactionRef = 'ORDER_' + Date.now(); // Simple unique ID
+        const encodedName = encodeURIComponent(name);
+        const encodedNote = encodeURIComponent('Payment for Eternal Chocolate Order');
+        
+        // UPI Deep Link Format: upi://pay?pa={VPA}&pn={NAME}&mc={MCC}&tid={TXN ID}&tr={REF ID}&am={AMOUNT}&cu={CURRENCY}&url={URL}
+        const upiLink = `upi://pay?pa=${vpa}&pn=${encodedName}&am=${amount.toFixed(2)}&tr=${transactionRef}&cu=INR&tn=${encodedNote}`;
+        
+        return upiLink;
+    }
 
-    // --- CHECKOUT LOGIC ---
+    function handleUpiIntent(amount) {
+        const upiLink = generateUpiIntentLink(amount);
+        
+        // Attempt to redirect the user to the UPI link.
+        // This will prompt the mobile OS to show a list of installed UPI apps.
+        window.location.href = upiLink;
+
+        // NOTE: In a real flow, you would start polling a server endpoint here 
+        // to check if the payment status has been confirmed by the Payment Gateway's webhook.
+        
+        // For this simulation, we'll just show a success message after a delay.
+        document.getElementById('checkout-content').innerHTML = ''; // Clear the form
+        document.getElementById('order-success').classList.remove('hidden');
+        cart = []; // Empty the cart
+        updateCart();
+        setTimeout(closeCheckout, 4000); // Close modal after a delay
+    }
+
+    // --- CHECKOUT LOGIC (MODIFIED) ---
     document.getElementById('checkout-btn').addEventListener('click', () => {
         toggleCart();
         checkoutModal.classList.remove('hidden');
@@ -434,10 +455,14 @@
     function closeCheckout() {
         checkoutModal.classList.add('hidden');
         document.getElementById('order-success').classList.add('hidden');
+        // Reload/clear the checkout content on close
+        document.getElementById('checkout-content').innerHTML = '';
     }
 
     function renderCheckoutForm() {
         const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        
+        // MODIFIED: Added a dedicated UPI Intent option
         document.getElementById('checkout-content').innerHTML = `
             <form id="payment-form" class="space-y-4">
                 <h4 class="text-lg font-semibold border-b border-ivory-cream/10 pb-2 mb-4">Shipping Information</h4>
@@ -449,8 +474,10 @@
                 </div>
                  <h4 class="text-lg font-semibold border-b border-ivory-cream/10 pb-2 mb-4 pt-4">Payment Method</h4>
                  <div class="space-y-2 text-ivory-cream/80">
-                    <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="upi" checked class="mr-3 accent-gold-foil"> UPI / Razorpay / Paytm</label>
+                    <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="upi-intent" checked class="mr-3 accent-gold-foil"> **Pay via UPI App (GPay, PhonePe etc.)**</label>
+                    
                     <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="card" class="mr-3 accent-gold-foil"> Credit / Debit Card</label>
+                    <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="netbanking" class="mr-3 accent-gold-foil"> Net Banking</label>
                     <label class="flex items-center p-3 bg-ivory-cream/5 rounded-md border border-transparent has-[:checked]:border-gold-foil has-[:checked]:bg-gold-foil/10"><input type="radio" name="payment" value="cod" class="mr-3 accent-gold-foil"> Cash on Delivery (COD)</label>
                  </div>
                  <div class="text-right text-xl pt-4">Total: <span class="text-gold-foil font-bold">₹${subtotal.toFixed(2)}</span></div>
@@ -460,12 +487,20 @@
 
         document.getElementById('payment-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            // In a real app, this would call a payment gateway
-            document.getElementById('checkout-content').innerHTML = ''; // Clear the form
-            document.getElementById('order-success').classList.remove('hidden');
-            cart = []; // Empty the cart
-            updateCart();
-            setTimeout(closeCheckout, 4000); // Close modal after a delay
+            
+            const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+            
+            if (selectedPayment === 'upi-intent') {
+                // *** CALL NEW UPI INTENT HANDLER ***
+                handleUpiIntent(subtotal);
+            } else {
+                // Existing logic for other payment methods (simulated success)
+                document.getElementById('checkout-content').innerHTML = '';
+                document.getElementById('order-success').classList.remove('hidden');
+                cart = []; // Empty the cart
+                updateCart();
+                setTimeout(closeCheckout, 4000); 
+            }
         });
     }
     
@@ -485,5 +520,4 @@
 </script>
 
 </body>
-
 </html>
