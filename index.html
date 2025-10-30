@@ -503,7 +503,7 @@
         openModal('product-detail-modal');
     }
 
-    // --- AUTHENTICATION ---
+    // --- AUTHENTICATION - MODIFIED TO INCLUDE MOBILE & SEND DATA ---
     function openAuthModal(type) {
         const content = document.getElementById('auth-modal-content');
         const isSigningUp = type === 'signup';
@@ -511,8 +511,13 @@
             <button onclick="closeModal('auth-modal')" class="absolute top-4 right-4 text-ivory-cream/50 hover:text-gold-foil text-2xl">&times;</button>
             <h3 class="font-brand text-3xl text-center mb-6">${isSigningUp ? 'Join the Eternal Circle' : 'Welcome Back'}</h3>
             <form id="auth-form" class="space-y-4">
-                ${isSigningUp ? '<input type="text" id="name" required placeholder="Your Name" class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">' : ''}
-                <input type="email" id="email" required placeholder="Email Address" class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">
+                
+                ${isSigningUp ? '<input type="text" id="name" name="Name" required placeholder="Your Name" class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">' : ''}
+                
+                <input type="email" id="email" name="Email" required placeholder="Email Address" class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">
+                
+                <input type="tel" id="mobile" name="Mobile" required placeholder="Mobile Number" class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">
+                
                 <input type="password" id="password" required placeholder="Password" class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil">
                 <p id="auth-error" class="text-red-400 text-sm hidden"></p>
                 <button type="submit" class="btn-gold w-full py-3 mt-4 rounded-md">${isSigningUp ? 'Create Account' : 'Sign In'}</button>
@@ -529,7 +534,10 @@
     function handleAuth(type) {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const name = type === 'signup' ? document.getElementById('name').value : null;
+        // Capture mobile and name
+        const mobile = document.getElementById('mobile').value; 
+        const name = type === 'signup' ? document.getElementById('name').value : (currentUser ? currentUser.name : 'User');
+        
         const errorEl = document.getElementById('auth-error');
 
         if(password.length < 6) {
@@ -540,17 +548,62 @@
         errorEl.classList.add('hidden');
 
         if (type === 'signup') {
-            const newUser = { name, email };
+            const newUser = { name, email, mobile };
             localStorage.setItem('eternal_user', JSON.stringify(newUser));
+            
+            // --- SEND DATA VIA FORMSUBMIT (SIGN UP) ---
+            sendFormDataToGmail('Sign Up', name, email, mobile);
+            
             login(newUser);
         } else {
             const storedUser = JSON.parse(localStorage.getItem('eternal_user'));
-            if(storedUser && storedUser.email === email) login(storedUser);
+            if(storedUser && storedUser.email === email) {
+                
+                // If user successfully signs in, send their stored data (and possibly updated mobile if they entered a new one)
+                const loginUser = {...storedUser, mobile: mobile || storedUser.mobile};
+                localStorage.setItem('eternal_user', JSON.stringify(loginUser)); // Update in storage just in case
+                
+                // --- SEND DATA VIA FORMSUBMIT (SIGN IN) ---
+                sendFormDataToGmail('Sign In', loginUser.name, loginUser.email, loginUser.mobile);
+                
+                login(loginUser);
+            }
             else {
                 errorEl.textContent = 'Invalid credentials. Please try again.';
                 errorEl.classList.remove('hidden');
             }
         }
+    }
+    
+    // --- NEW FUNCTION TO SEND DATA TO GMAIL VIA FORMSUBMIT ---
+    function sendFormDataToGmail(action, name, email, mobile) {
+        // !!! IMPORTANT: The email you provided is used directly in the FormSubmit URL.
+        const FORM_ENDPOINT = "https://formsubmit.co/ajax/funnygamer1g4@gmail.com"; 
+
+        const formData = new FormData();
+        formData.append('Action', action);
+        formData.append('Name', name || 'N/A');
+        formData.append('Email', email);
+        formData.append('Mobile', mobile);
+        // This is the subject line you'll see in the Gmail
+        formData.append('_subject', `New Eternal User ${action}: ${name || email}`);
+        
+        fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.error('FormSubmit response not OK');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(`User data sent to Gmail for ${action}:`, data);
+        })
+        .catch(error => {
+            console.error('Error sending data to FormSubmit:', error);
+        });
     }
     
     function login(user) {
