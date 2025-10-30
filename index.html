@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eternal Chocolate Bars — Timeless Indulgence</title>
     
-    <!-- SEO & Social Media Meta Tags -->
     <meta name="description" content="Eternal Chocolate Bars – timeless, luxurious, handcrafted from single-origin cacao. Discover a piece of eternity.">
     <meta name="keywords" content="dark chocolate, luxury chocolate, Eternal Bars, artisan cacao, handcrafted chocolate, single-origin">
     <meta property="og:title" content="Eternal Chocolate Bars — Timeless Indulgence" />
@@ -13,15 +12,12 @@
     <meta property="og:image" content="https://placehold.co/1200x630/0c1445/d4af37?text=Eternal" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
@@ -178,11 +174,9 @@
 </head>
 <body class="celestial-bg">
 
-    <!-- Scroll Progress & Cursor -->
     <div id="scroll-progress"></div>
     <div class="cursor-glow"></div>
 
-    <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-midnight-blue/80 backdrop-blur-sm border-b border-ivory-cream/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" onclick="navigateTo('home')" class="font-brand text-3xl gold-foil-text tracking-wider">Eternal</a>
@@ -214,9 +208,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="pt-20">
-        <!-- Home Page -->
         <div id="home" class="page-content">
             <section class="min-h-screen flex items-center justify-center text-center px-6 relative overflow-hidden">
                 <div id="parallax-container" class="absolute inset-0 z-0">
@@ -233,7 +225,6 @@
             </section>
         </div>
 
-        <!-- Shop Page -->
         <div id="shop" class="page-content hidden">
             <section class="container mx-auto px-6 py-16">
                 <div data-aos="fade-down">
@@ -248,12 +239,10 @@
                     </div>
                 </div>
                 <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Product cards will be injected here by JS -->
-                </div>
+                    </div>
             </section>
         </div>
 
-        <!-- About Page -->
         <div id="about" class="page-content hidden">
              <section class="container mx-auto px-6 py-16" data-aos="fade-up">
                 <div class="max-w-4xl mx-auto text-center">
@@ -269,7 +258,6 @@
             </section>
         </div>
 
-        <!-- Contact Page -->
         <div id="contact" class="page-content hidden">
             <section class="container mx-auto px-6 py-16" data-aos="fade-up">
                 <div class="max-w-2xl mx-auto text-center">
@@ -287,7 +275,6 @@
         </div>
     </main>
     
-    <!-- Footer -->
     <footer class="bg-ivory-cream/5 py-12 mt-16">
         <div class="container mx-auto px-6 text-center text-ivory-cream/60">
             <div class="flex justify-center space-x-8 mb-6">
@@ -301,22 +288,16 @@
         </div>
     </footer>
     
-    <!-- Modals & Sidebars -->
-    <!-- Authentication Modal -->
     <div id="auth-modal" class="fixed inset-0 bg-black/70 z-[51] hidden flex items-center justify-center p-4 modal-enter">
         <div class="bg-midnight-blue rounded-lg shadow-xl w-full max-w-md p-8 relative celestial-bg" id="auth-modal-content">
-            <!-- Auth form injected here -->
-        </div>
+            </div>
     </div>
     
-    <!-- Product Detail Modal -->
     <div id="product-detail-modal" class="fixed inset-0 bg-black/70 z-[52] hidden flex items-center justify-center p-4 modal-enter">
         <div id="product-detail-content" class="bg-midnight-blue rounded-lg shadow-xl w-full max-w-4xl h-[90vh] max-h-[700px] relative celestial-bg flex flex-col md:flex-row overflow-y-auto hide-scrollbar">
-            <!-- Product details injected here -->
-        </div>
+            </div>
     </div>
 
-    <!-- Cart Sidebar -->
     <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-midnight-blue shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out z-[53] flex flex-col">
         <div class="p-6 flex justify-between items-center border-b border-ivory-cream/10">
             <h3 class="font-brand text-2xl">Your Cart</h3>
@@ -326,8 +307,7 @@
         </div>
         <div id="cart-items" class="flex-grow p-6 overflow-y-auto hide-scrollbar">
             <p id="empty-cart-message" class="text-center text-ivory-cream/50 mt-10">Your cart is empty.</p>
-            <!-- Cart items injected here -->
-        </div>
+            </div>
         <div class="p-6 border-t border-ivory-cream/10">
             <div class="flex justify-between items-center text-lg mb-4">
                 <span>Subtotal</span>
@@ -338,13 +318,11 @@
     </div>
     <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-[52] hidden" onclick="toggleCart()"></div>
 
-    <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 bg-black/70 z-[54] hidden flex items-center justify-center p-4 modal-enter">
         <div class="bg-midnight-blue rounded-lg shadow-xl w-full max-w-lg p-8 relative celestial-bg">
             <button onclick="closeModal('checkout-modal')" class="absolute top-4 right-4 text-ivory-cream/50 hover:text-gold-foil text-2xl">&times;</button>
             <div id="checkout-content-wrapper">
-                <!-- Checkout content injected here -->
-            </div>
+                </div>
         </div>
     </div>
 
@@ -356,12 +334,8 @@
         { id: 1, name: 'Timeless Dark', description: '60% Cacao with rich, earthy notes.', price: 250, category: 'dark', color: '#800020', cacao: 60, story: 'A classic, profound flavor that stands the test of time.' },
         { id: 2, name: 'Midnight Milk', description: 'Creamy & Smooth, a dreamy escape.', price: 220, category: 'milk', color: '#c0844f', cacao: 45, story: 'As comforting as a starry night sky.' },
         { id: 3, name: 'Caramel Eclipse', description: 'With a touch of Himalayan Sea Salt.', price: 280, category: 'milk', color: '#ff7f50', cacao: 50, story: 'A perfect alignment of sweet and savory.' },
-        { id: 4, name: 'Supernova', description: 'White Chocolate & Raspberry bursts.', price: 300, category: 'white', color: '#ffc0cb', cacao: 35, story: 'An explosion of cosmic fruitiness.' },
-        { id: 5, name: 'Cosmic Mint', description: 'Dark Chocolate with a refreshing nebula of mint.', price: 260, category: 'dark', color: '#2E8B57', cacao: 65, story: 'Cool, crisp, and infinitely deep.' },
-        { id: 6, name: 'Orion Orange', description: 'Dark Chocolate & Zesty Orange peel.', price: 260, category: 'dark', color: '#FFA500', cacao: 62, story: 'A bright constellation of citrus in a dark sky.' },
-        { id: 7, name: 'Galaxy Hazelnut', description: 'Milk chocolate with roasted hazelnuts.', price: 290, category: 'milk', color: '#8B4513', cacao: 48, story: 'A crunchy journey through a creamy galaxy.' },
-        { id: 8, name: 'Void 99%', description: 'Intensely dark, for the true connoisseur.', price: 350, category: 'dark', color: '#1a1a1a', cacao: 99, story: 'Embrace the pure, powerful darkness of the cosmos.' },
-        { id: 9, name: 'Celestial Crunch', description: 'Limited Edition with popping candy.', price: 320, category: 'limited', color: '#483D8B', cacao: 55, story: 'Feel the stars explode on your tongue.' },
+        { id: 4, name: 'Galaxy Peanut', description: 'Milk chocolate with roasted peanuts.', price: 290, category: 'milk', color: '#8B4513', cacao: 48, story: 'A crunchy journey through a creamy galaxy.' },
+        { id: 5, name: 'Void 99%', description: 'Intensely dark, for the true connoisseur.', price: 350, category: 'dark', color: '#1a1a1a', cacao: 99, story: 'Embrace the pure, powerful darkness of the cosmos.' },
     ];
     let cart = [];
     let currentUser = null;
@@ -716,5 +690,4 @@
 </script>
 
 </body>
-
 </html>
