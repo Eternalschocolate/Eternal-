@@ -400,10 +400,10 @@
 
     // Mock Product Data
     const products = [
-        { id: 1, name: 'Timeless Dark', description: '75% Single-Origin Ecuadorian Cacao. Deep, complex notes of cherry and toasted nuts, finished with an eternal velvet melt. Our signature bar.', price: 160.00, category: 'dark', image: '1001040696.jpg' },
-        { id: 3, name: 'Butter Void Mini', description: 'White chocolate infused with golden butterscotch and a whisper of sea salt. A sweet, shimmering nebula of flavor.', price: 15.00, category: 'white', image: '1001040699.jpg' },
-        { id: 4, name: 'Vanilla Void Mini', description: '85% Dark Cacao with a spark of Mexican ancho chili and cinnamon. A fiery, intense journey across the flavor spectrum.', price: 10.00, category: 'dark', image: '1001040699.jpg' },
-        { id: 5, name: 'Dry Fruits Mini', description: '55% Milk chocolate generously studded with toasted, crunchy almonds. A classic flavor, perfected for the ages.', price: 20.00, category: 'milk', image: '1001040699.jpg' },
+        { id: 1, name: 'Timeless Dark', description: '75% Single-Origin Ecuadorian Cacao. Deep, complex notes of cherry and toasted nuts, finished with an eternal velvet melt. Our signature bar.', price: 160.00, category: 'dark', image: '/Eternal-/1001040696.jpg' },
+        { id: 3, name: 'Butter Void Mini', description: 'White chocolate infused with golden butterscotch and a whisper of sea salt. A sweet, shimmering nebula of flavor.', price: 15.00, category: 'white', image: '/Eternal-/1001040699.jpg' },
+        { id: 4, name: 'Vanilla Void Mini', description: '85% Dark Cacao with a spark of Mexican ancho chili and cinnamon. A fiery, intense journey across the flavor spectrum.', price: 10.00, category: 'dark', image: '/Eternal-/1001040699.jpg' },
+        { id: 5, name: 'Dry Fruits Mini', description: '55% Milk chocolate generously studded with toasted, crunchy almonds. A classic flavor, perfected for the ages.', price: 20.00, category: 'milk', image: '/Eternal-/1001040699.jpg' },
     ];
     
     // --- HELPER FUNCTIONS ---
@@ -445,7 +445,7 @@
     function logout() {
         localStorage.removeItem('currentUser');
         document.getElementById('user-actions').classList.remove('hidden');
-        document.getElementById('user-profile').classList.add('hidden');
+        document.getElementById('user-profile').add('hidden');
         closeProfileDropdown();
     }
 
@@ -491,7 +491,7 @@
                 <h3 class="font-brand text-3xl text-center mb-6 gold-foil-text">${title}</h3>
                 <form id="auth-form" onsubmit="event.preventDefault(); handleAuth('signup')">
                     <input type="text" id="auth-name" placeholder="Full Name" required class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil mb-4 text-ivory-cream">
-                    <input type="email" id="auth-email" placeholder="Email" required class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil mb-4 text-ivory-cream">
+                    <input type="email" id="auth-email" placeholder="Email" required class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil mb-4 text.ivory-cream">
                     <input type="password" id="auth-password" placeholder="Password (min 6 chars)" required class="w-full bg-ivory-cream/5 p-3 rounded-md border border-ivory-cream/20 focus:outline-none focus:ring-1 focus:ring-gold-foil mb-6 text-ivory-cream">
                     <p class="text-center text-red-400 text-sm h-4 mb-4" id="auth-status"></p>
                     <button type="submit" class="btn-gold w-full py-3 rounded-md text-lg font-semibold">Create Account</button>
@@ -758,7 +758,7 @@
                 <img src="${imageUrl}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md"/>
                 <div class="flex-grow">
                     <p class="font-semibold text-ivory-cream">${item.name}</p>
-                    <p class="text-gold-foil text-sm">₹${item.price.toFixed(2)}</p>
+                    <p class="text-gold-foil text-sm">₹${item.price.toFixed(2)}</Lp>
                 </div>
                 <div class="flex items-center space-x-2">
                     <button onclick="changeQuantity(${item.id}, -1)" class="text-xs w-5 h-5 border border-ivory-cream/20 rounded-full hover:bg-ivory-cream/10 transition">-</button>
